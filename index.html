@@ -1,50 +1,87 @@
-<script>
-    const pi = "3.141592653589793238462643";
-    let currentPi = "3.";
-    let currentIndex = 2;
-    let guessCount = 0;
-    const piValueDisplay = document.getElementById("piValue");
-    const guessInput = document.getElementById("guess");
-    const submitButton = document.getElementById("submit");
-    const messageDisplay = document.getElementById("message");
-    const resetButton = document.getElementById("reset");
-    const guessCountDisplay = document.getElementById("guessCount");
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pi Guessing Game</title>
+<style>
+body {
+    font-family: sans-serif;
+    text-align: center;
+    padding-top: 50px;
+}
+#piValue {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+#message {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+#reset {
+    display: none;
+    margin: 20px auto; /* Center the button */
+    padding: 10px 20px; /* add padding for better look */
+}
+</style>
+</head>
+<body>
+    <h1>Happy Pi Day. Would you like to find the value of Pi out to 25 digits?</h1>
+    <div id="piValue">3.</div>
+    <input type="number" id="guess" min="0" max="9">
+    <button id="submit">Submit</button>
+    <div id="message"></div>
+    <button id="reset">Reset</button>
+    <div id="guessCount">You have guessed 0 number of times.</div>
 
-    submitButton.addEventListener("click", function() {
-        const guess = parseInt(guessInput.value);
-        const correctDigit = parseInt(pi[currentIndex]);
+    <script>
+        const pi = "3.141592653589793238462643";
+        let currentPi = "3.";
+        let currentIndex = 2;
+        let guessCount = 0;
+        const piValueDisplay = document.getElementById("piValue");
+        const guessInput = document.getElementById("guess");
+        const submitButton = document.getElementById("submit");
+        const messageDisplay = document.getElementById("message");
+        const resetButton = document.getElementById("reset");
+        const guessCountDisplay = document.getElementById("guessCount");
 
-        guessCount++;
-        guessCountDisplay.textContent = "You have guessed " + guessCount + " number of times.";
+        submitButton.addEventListener("click", function() {
+            const guess = parseInt(guessInput.value);
+            const correctDigit = parseInt(pi[currentIndex]);
 
-        if (guess === correctDigit) {
-            currentPi += guess;
-            piValueDisplay.textContent = currentPi;
-            messageDisplay.textContent = "Correct!";
-            currentIndex++;
-            guessInput.value = "";
+            guessCount++;
+            guessCountDisplay.textContent = "You have guessed " + guessCount + " number of times.";
 
-            if (currentIndex === pi.length) {
-                messageDisplay.textContent = "Congratulations! You won in " + guessCount + " guesses.";
-                submitButton.style.display = "none";
-                resetButton.style.display = "block";
+            if (guess === correctDigit) {
+                currentPi += guess;
+                piValueDisplay.textContent = currentPi;
+                messageDisplay.textContent = "Correct!";
+                currentIndex++;
+                guessInput.value = "";
+
+                if (currentIndex === pi.length) {
+                    messageDisplay.textContent = "Congratulations! You won in " + guessCount + " guesses.";
+                    submitButton.style.display = "none";
+                    resetButton.style.display = "block";
+                }
+            } else if (guess < correctDigit) {
+                messageDisplay.textContent = "Your guess is too low! Try again.";
+            } else {
+                messageDisplay.textContent = "Your guess is too high! Try again.";
             }
-        } else if (guess < correctDigit) {
-            messageDisplay.textContent = "Your guess is too low! Try again.";
-        } else {
-            messageDisplay.textContent = "Your guess is too high! Try again.";
-        }
-    });
+        });
 
-    resetButton.addEventListener("click", function() {
-        currentPi = "3.";
-        currentIndex = 2;
-        guessCount = 0;
-        piValueDisplay.textContent = currentPi;
-        messageDisplay.textContent = "";
-        submitButton.style.display = "block";
-        resetButton.style.display = "none";
-        guessInput.value = "";
-        guessCountDisplay.textContent = "You have guessed 0 number of times.";
-    });
-</script>
+        resetButton.addEventListener("click", function() {
+            currentPi = "3.";
+            currentIndex = 2;
+            guessCount = 0;
+            piValueDisplay.textContent = currentPi;
+            messageDisplay.textContent = "";
+            submitButton.style.display = "block";
+            resetButton.style.display = "none";
+            guessInput.value = "";
+            guessCountDisplay.textContent = "You have guessed 0 number of times.";
+        });
+        resetButton.style.display = 'none'; //ensure reset button is hidden on load.
+    </script>
+</body>
+</html>
