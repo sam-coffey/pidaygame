@@ -25,20 +25,26 @@ body {
     <button id="submit">Submit</button>
     <div id="message"></div>
     <button id="reset" style="display: none;">Reset</button>
+    <div id="guessCount">Guesses: 0</div>
 
     <script>
         const pi = "3.141592653589793238462643";
         let currentPi = "3.";
-        let currentIndex = 2; // Start after '3.'
+        let currentIndex = 2;
+        let guessCount = 0;
         const piValueDisplay = document.getElementById("piValue");
         const guessInput = document.getElementById("guess");
         const submitButton = document.getElementById("submit");
         const messageDisplay = document.getElementById("message");
         const resetButton = document.getElementById("reset");
+        const guessCountDisplay = document.getElementById("guessCount");
 
         submitButton.addEventListener("click", function() {
             const guess = parseInt(guessInput.value);
             const correctDigit = parseInt(pi[currentIndex]);
+
+            guessCount++;
+            guessCountDisplay.textContent = "Guesses: " + guessCount;
 
             if (guess === correctDigit) {
                 currentPi += guess;
@@ -47,8 +53,8 @@ body {
                 currentIndex++;
                 guessInput.value = "";
 
-                if (currentIndex === 27) { // 25 digits after 3.
-                    messageDisplay.textContent = "Congratulations! You win.";
+                if (currentIndex === 27) {
+                    messageDisplay.textContent = "Congratulations! You won in " + guessCount + " guesses.";
                     submitButton.style.display = "none";
                     resetButton.style.display = "block";
                 }
@@ -62,11 +68,13 @@ body {
         resetButton.addEventListener("click", function() {
             currentPi = "3.";
             currentIndex = 2;
+            guessCount = 0;
             piValueDisplay.textContent = currentPi;
             messageDisplay.textContent = "";
             submitButton.style.display = "block";
             resetButton.style.display = "none";
             guessInput.value = "";
+            guessCountDisplay.textContent = "Guesses: 0";
         });
     </script>
 </body>
