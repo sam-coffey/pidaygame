@@ -25,7 +25,7 @@ body {
     <button id="submit">Submit</button>
     <div id="message"></div>
     <button id="reset" style="display: none;">Reset</button>
-    <div id="guessCount">Guesses: 0</div>
+    <div id="guessCount">You have guessed 0 number of times.</div>
 
     <script>
         const pi = "3.141592653589793238462643";
@@ -44,7 +44,7 @@ body {
             const correctDigit = parseInt(pi[currentIndex]);
 
             guessCount++;
-            guessCountDisplay.textContent = "Guesses: " + guessCount;
+            guessCountDisplay.textContent = "You have guessed " + guessCount + " number of times.";
 
             if (guess === correctDigit) {
                 currentPi += guess;
@@ -74,7 +74,7 @@ body {
             submitButton.style.display = "block";
             resetButton.style.display = "none";
             guessInput.value = "";
-            guessCountDisplay.textContent = "Guesses: 0";
+            guessCountDisplay.textContent = "You have guessed 0 number of times.";
         });
     </script>
 </body>
