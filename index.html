@@ -10,114 +10,21 @@ body {
     padding-top: 20px;
     margin: 0;
 }
-h1 {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-}
-#piValue {
-    font-size: 1.8em;
-    margin-bottom: 20px;
-}
-#message {
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-#reset {
-    display: none;
-    margin: 20px auto;
-    padding: 10px 20px;
-    font-size: 1em;
-}
-#guessContainer {
-    display: inline-block;
-    margin: 0 auto;
-}
-input[type="number"] {
-    padding: 10px;
-    font-size: 1em;
-    width: 60px;
-    margin-right: 5px;
-}
-button {
-    padding: 10px 15px;
-    font-size: 1em;
-}
-#guessCount {
-    font-size: 0.9em;
-    margin-top: 10px;
-}
+/* ... (rest of your CSS) ... */
 </style>
 </head>
 <body>
-    <h1>Happy Pi Day. Would you like to find the value of Pi out to 25 digits?</h1>
-    <div id="piValue">3.</div>
-    <div id="guessContainer">
-      <input type="number" id="guess" min="0" max="9">
-      <button id="submit">Submit</button>
-    </div>
-    <div id="message"></div>
-    <button id="reset">Reset</button>
-    <div id="guessCount">You have guessed 0 number of times.</div>
-
     <script>
-        const pi = "3.141592653589793238462643";
-        let currentPi = "3.";
-        let currentIndex = 2;
-        let guessCount = 0;
-        const piValueDisplay = document.getElementById("piValue");
-        const guessInput = document.getElementById("guess");
-        const submitButton = document.getElementById("submit");
-        const messageDisplay = document.getElementById("message");
-        const resetButton = document.getElementById("reset");
-        const guessCountDisplay = document.getElementById("guessCount");
-
-        resetButton.style.display = 'none';
-
-        submitButton.addEventListener("click", handleGuess);
+        // ... (your existing JavaScript) ...
 
         guessInput.addEventListener("keydown", function(event) {
-            if (event.key === "Enter") {
+            if (event.key === "Enter" || event.keyCode === 13) { // Added keyCode check
+                event.preventDefault(); // Prevent default form submission
                 handleGuess();
             }
         });
 
-        function handleGuess() {
-            const guess = parseInt(guessInput.value);
-            const correctDigit = parseInt(pi[currentIndex]);
-
-            guessCount++;
-            guessCountDisplay.textContent = "You have guessed " + guessCount + " number of times.";
-
-            if (guess === correctDigit) {
-                currentPi += guess;
-                piValueDisplay.textContent = currentPi;
-                messageDisplay.textContent = "Correct!";
-                currentIndex++;
-                guessInput.value = "";
-
-                if (currentIndex === pi.length) {
-                    messageDisplay.textContent = "Congratulations! You won in " + guessCount + " guesses.";
-                    submitButton.style.display = "none";
-                    resetButton.style.display = "block";
-                }
-            } else if (guess < correctDigit) {
-                messageDisplay.textContent = "Your guess is too low! Try again.";
-            } else {
-                messageDisplay.textContent = "Your guess is too high! Try again.";
-            }
-        }
-
-        resetButton.addEventListener("click", function() {
-            currentPi = "3.";
-            currentIndex = 2;
-            guessCount = 0;
-            piValueDisplay.textContent = currentPi;
-            messageDisplay.textContent = "";
-            submitButton.style.display = "block";
-            resetButton.style.display = "none";
-            guessInput.value = "";
-            guessCountDisplay.textContent = "You have guessed 0 number of times.";
-        });
+        // ... (rest of your JavaScript) ...
     </script>
 </body>
 </html>
