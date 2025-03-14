@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pi Guessing Game</title>
+<style>
+body {
+    font-family: sans-serif;
+    text-align: center;
+    padding-top: 50px;
+}
+#piValue {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+#message {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+    <h1>Happy Pi Day. Would you like to find the value of Pi out to 25 digits?</h1>
+    <div id="piValue">3.</div>
+    <input type="number" id="guess" min="0" max="9">
+    <button id="submit">Submit</button>
+    <div id="message"></div>
+    <button id="reset" style="display: none;">Reset</button>
+
+    <script>
+        const pi = "3.141592653589793238462643";
+        let currentPi = "3.";
+        let currentIndex = 2; // Start after '3.'
+        const piValueDisplay = document.getElementById("piValue");
+        const guessInput = document.getElementById("guess");
+        const submitButton = document.getElementById("submit");
+        const messageDisplay = document.getElementById("message");
+        const resetButton = document.getElementById("reset");
+
+        submitButton.addEventListener("click", function() {
+            const guess = parseInt(guessInput.value);
+            const correctDigit = parseInt(pi[currentIndex]);
+
+            if (guess === correctDigit) {
+                currentPi += guess;
+                piValueDisplay.textContent = currentPi;
+                messageDisplay.textContent = "Correct!";
+                currentIndex++;
+                guessInput.value = "";
+
+                if (currentIndex === 27) { // 25 digits after 3.
+                    messageDisplay.textContent = "Congratulations! You win.";
+                    submitButton.style.display = "none";
+                    resetButton.style.display = "block";
+                }
+            } else if (guess < correctDigit) {
+                messageDisplay.textContent = "Your guess is too low! Try again.";
+            } else {
+                messageDisplay.textContent = "Your guess is too high! Try again.";
+            }
+        });
+
+        resetButton.addEventListener("click", function() {
+            currentPi = "3.";
+            currentIndex = 2;
+            piValueDisplay.textContent = currentPi;
+            messageDisplay.textContent = "";
+            submitButton.style.display = "block";
+            resetButton.style.display = "none";
+            guessInput.value = "";
+        });
+    </script>
+</body>
+</html>
