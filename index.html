@@ -57,7 +57,7 @@ button {
     </div>
     <div id="message"></div>
     <button id="reset">Reset</button>
-    <div id="guessCount">You have guessed 0 number of times.</div>
+    <div id="guessCount">You have guessed 0 times.</div>
 
     <script>
         const pi = "3.141592653589793238462643";
@@ -87,7 +87,7 @@ button {
             const correctDigit = parseInt(pi[currentIndex]);
 
             guessCount++;
-            guessCountDisplay.textContent = "You have guessed " + guessCount + " number of times.";
+            guessCountDisplay.textContent = "You have guessed " + guessCount + " times.";
 
             if (guess === correctDigit) {
                 currentPi += guess;
