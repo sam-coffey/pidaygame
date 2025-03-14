@@ -21,13 +21,18 @@ body {
     margin: 20px auto;
     padding: 10px 20px;
 }
+#guessContainer {
+  display: inline-block; /* Ensure input and button are inline */
+}
 </style>
 </head>
 <body>
     <h1>Happy Pi Day. Would you like to find the value of Pi out to 25 digits?</h1>
     <div id="piValue">3.</div>
-    <input type="number" id="guess" min="0" max="9">
-    <button id="submit">Submit</button>
+    <div id="guessContainer">
+      <input type="number" id="guess" min="0" max="9">
+      <button id="submit">Submit</button>
+    </div>
     <div id="message"></div>
     <button id="reset">Reset</button>
     <div id="guessCount">You have guessed 0 number of times.</div>
@@ -44,7 +49,7 @@ body {
         const resetButton = document.getElementById("reset");
         const guessCountDisplay = document.getElementById("guessCount");
 
-        resetButton.style.display = 'none'; // Correct placement!
+        resetButton.style.display = 'none';
 
         submitButton.addEventListener("click", function() {
             const guess = parseInt(guessInput.value);
