@@ -18,8 +18,8 @@ body {
 }
 #reset {
     display: none;
-    margin: 20px auto; /* Center the button */
-    padding: 10px 20px; /* add padding for better look */
+    margin: 20px auto;
+    padding: 10px 20px;
 }
 </style>
 </head>
@@ -43,6 +43,8 @@ body {
         const messageDisplay = document.getElementById("message");
         const resetButton = document.getElementById("reset");
         const guessCountDisplay = document.getElementById("guessCount");
+
+        resetButton.style.display = 'none'; // Correct placement!
 
         submitButton.addEventListener("click", function() {
             const guess = parseInt(guessInput.value);
@@ -81,7 +83,6 @@ body {
             guessInput.value = "";
             guessCountDisplay.textContent = "You have guessed 0 number of times.";
         });
-        resetButton.style.display = 'none'; //ensure reset button is hidden on load.
     </script>
 </body>
 </html>
