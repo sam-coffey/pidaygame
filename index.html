@@ -53,7 +53,7 @@ body {
                 currentIndex++;
                 guessInput.value = "";
 
-                if (currentIndex === 27) {
+                if (currentIndex === pi.length) { // Correct condition
                     messageDisplay.textContent = "Congratulations! You won in " + guessCount + " guesses.";
                     submitButton.style.display = "none";
                     resetButton.style.display = "block";
