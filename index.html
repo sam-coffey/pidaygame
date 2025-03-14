@@ -2,14 +2,20 @@
 <html>
 <head>
 <title>Pi Guessing Game</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body {
     font-family: sans-serif;
     text-align: center;
-    padding-top: 50px;
+    padding-top: 20px;
+    margin: 0;
+}
+h1 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
 }
 #piValue {
-    font-size: 2em;
+    font-size: 1.8em;
     margin-bottom: 20px;
 }
 #message {
@@ -20,10 +26,25 @@ body {
     display: none;
     margin: 20px auto;
     padding: 10px 20px;
+    font-size: 1em;
 }
 #guessContainer {
-  display: inline-block;
-  margin: 0 auto; /* Center the container horizontally */
+    display: inline-block;
+    margin: 0 auto;
+}
+input[type="number"] {
+    padding: 10px;
+    font-size: 1em;
+    width: 60px;
+    margin-right: 5px;
+}
+button {
+    padding: 10px 15px;
+    font-size: 1em;
+}
+#guessCount {
+    font-size: 0.9em;
+    margin-top: 10px;
 }
 </style>
 </head>
@@ -52,7 +73,15 @@ body {
 
         resetButton.style.display = 'none';
 
-        submitButton.addEventListener("click", function() {
+        submitButton.addEventListener("click", handleGuess);
+
+        guessInput.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                handleGuess();
+            }
+        });
+
+        function handleGuess() {
             const guess = parseInt(guessInput.value);
             const correctDigit = parseInt(pi[currentIndex]);
 
@@ -76,7 +105,7 @@ body {
             } else {
                 messageDisplay.textContent = "Your guess is too high! Try again.";
             }
-        });
+        }
 
         resetButton.addEventListener("click", function() {
             currentPi = "3.";
